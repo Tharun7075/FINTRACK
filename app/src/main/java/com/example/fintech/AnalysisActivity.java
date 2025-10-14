@@ -11,21 +11,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class RecordsActivity extends AppCompatActivity {
+public class AnalysisActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_records);
+        setContentView(R.layout.activity_analysis);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setSelectedItemId(R.id.nav_records); // Highlight Records icon
+        bottomNav.setSelectedItemId(R.id.nav_analysis); // Highlight Records icon
 
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
