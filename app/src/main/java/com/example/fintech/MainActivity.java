@@ -2,6 +2,7 @@ package com.example.fintech;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
         signUpPrompt.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SignupActivity.class);
             startActivity(intent);
+        });
+
+        // Navigate to HomeActivity when "Login" button is clicked
+        Button loginButton = findViewById(R.id.loginButton); // Make sure this ID exists in activity_main.xml
+        loginButton.setOnClickListener(v -> {
+            // TODO: Add login validation logic here
+
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

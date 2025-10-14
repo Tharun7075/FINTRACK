@@ -41,16 +41,6 @@
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/edit_text" />
 
-    <!-- Forgot Password Text -->
-    <TextView
-        android:id="@+id/forgotPasswordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textColor="#1E88E5"
-        android:textSize="14sp"
-        android:layout_marginBottom="28dp" />
-
     <!-- Sign Up Prompt -->
     <TextView
         android:id="@+id/signUpPrompt"
@@ -62,7 +52,7 @@
 
     <!-- Submit Button -->
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
