@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinTech">
         <activity
-            android:name=".AccountsActivity"
+            android:name=".RecordActivity"
             android:exported="false" />
         <activity
             android:name=".BudgetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountsActivity"
             android:exported="false" />
         <activity
             android:name=".AnalysisActivity"
@@ -38,7 +41,6 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>
