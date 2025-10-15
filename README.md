@@ -11,7 +11,8 @@ These components should be considered as potential enhancements for future devel
 
 ### Use of an Outside API
 As of now, we are not using any APIs as the bank account connectivity needs to be handled with the consent of the users. If we had to, the project could integrate the Plaid API in future development phases to enable secure bank account connectivity and transaction import. 
-4. Functionality We Will Not Cover
+
+### Functionality We Will Not Cover
 The following features are outside the scope of the current milestone and will not be implemented at this stage:
 •	Search and Filter Transactions: Efficient query handling and responsive UI updates are essential for this feature. Initial implementation can leverage RecyclerView with basic filtering and search functionality.
 •	Maps Integration: For visualizing spending by location or identifying nearby financial services.
