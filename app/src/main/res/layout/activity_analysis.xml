@@ -15,14 +15,14 @@
         android:id="@+id/monthTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="October 2023"
-        android:textSize="24sp"
+        android:text="Analysis"
+        android:layout_marginTop="20dp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="#2E7D32"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Subtitle -->
     <TextView
