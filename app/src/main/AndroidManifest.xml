@@ -18,9 +18,6 @@
             android:name=".AccountsActivity"
             android:exported="false" />
         <activity
-            android:name=".RecordActivity"
-            android:exported="false" />
-        <activity
             android:name=".BudgetActivity"
             android:exported="false" />
         <activity
