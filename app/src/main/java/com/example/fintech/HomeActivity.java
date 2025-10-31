@@ -15,10 +15,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_home); // Highlight Records icon
+
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.nav_records) {
-                startActivity(new Intent(this, RecordsActivity.class));
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, HomeActivity.class));
                 return true;
             } else if (itemId == R.id.nav_analysis) {
                 startActivity(new Intent(this, AnalysisActivity.class));

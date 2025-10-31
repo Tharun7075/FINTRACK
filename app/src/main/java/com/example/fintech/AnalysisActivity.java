@@ -28,8 +28,8 @@ public class AnalysisActivity extends AppCompatActivity {
 
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.nav_records) {
-                startActivity(new Intent(this, RecordsActivity.class));
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, HomeActivity.class));
                 return true;
             } else if (itemId == R.id.nav_analysis) {
                 startActivity(new Intent(this, AnalysisActivity.class));
