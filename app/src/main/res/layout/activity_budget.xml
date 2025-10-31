@@ -40,148 +40,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Budget Card Template -->
-            <!-- Repeat this block for each category -->
-
-            <!-- Food -->
-            <androidx.cardview.widget.CardView
+            <!-- Each include is a stub card you fill from code -->
+            <include
+                android:id="@+id/foodCard"
+                layout="@layout/budget_card_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
+                tools:ignore="MissingConstraints" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🍔 Food:                                                        20 / 500"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#424242" />
-
-                    <ProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:max="500"
-                        android:progress="20"
-                        android:progressTint="#FF7043"
-                        android:backgroundTint="#E0E0E0"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Transport -->
-            <androidx.cardview.widget.CardView
+            <include
+                android:id="@+id/transportCard"
+                layout="@layout/budget_card_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
+                tools:ignore="MissingConstraints" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🚗 Transport:                                             100 / 1000"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#424242" />
-
-                    <ProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:max="1000"
-                        android:progress="100"
-                        android:progressTint="#29B6F6"
-                        android:backgroundTint="#E0E0E0"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Groceries -->
-            <androidx.cardview.widget.CardView
+            <include
+                android:id="@+id/groceryCard"
+                layout="@layout/budget_card_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
+                tools:ignore="MissingConstraints" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🛒 Groceries:                                                80 / 300"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#424242" />
-
-                    <ProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:max="300"
-                        android:progress="80"
-                        android:progressTint="#66BB6A"
-                        android:backgroundTint="#E0E0E0"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Bills -->
-            <androidx.cardview.widget.CardView
+            <include
+                android:id="@+id/billsCard"
+                layout="@layout/budget_card_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📄 Bills:                                                        100 / 700"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#424242" />
-
-                    <ProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:max="700"
-                        android:progress="100"
-                        android:progressTint="#AB47BC"
-                        android:backgroundTint="#E0E0E0"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                tools:ignore="MissingConstraints" />
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation (unchanged) -->
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
