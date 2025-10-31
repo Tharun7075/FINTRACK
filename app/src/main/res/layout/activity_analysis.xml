@@ -47,8 +47,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/monthSubtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/chart_card_background">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
