@@ -19,6 +19,14 @@ public class MainActivity extends AppCompatActivity {
     private EditText usernameField;
     private EditText passwordField;
 
+    // Stub credentials
+    private final String stubEmail1 = "test1@fintrack.com";
+    private final String stubPassword1 = "123456";
+    private final String stubEmail2 = "test2@fintrack.com";
+    private final String stubPassword2 = "654321";
+    private final String stubEmail3 = "test3@fintrack.com";
+    private final String stubPassword3 = "123456";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,14 +75,21 @@ public class MainActivity extends AppCompatActivity {
 
             if (hasError) {
                 Toast.makeText(MainActivity.this, "Please enter both username and password", Toast.LENGTH_SHORT).show();
-                return; // ⟵ prevents navigation
+                return;
             }
 
-            // TODO: Replace with your real authentication
-            // If validation passes, navigate to Home
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
+            // Stub authentication check
+            boolean isValid = (username.equals(stubEmail1) && password.equals(stubPassword1)) ||
+                    (username.equals(stubEmail2) && password.equals(stubPassword2)) ||
+                    (username.equals(stubEmail3) && password.equals(stubPassword3));
+
+            if (isValid) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(MainActivity.this, "Invalid credentials (stub check)", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

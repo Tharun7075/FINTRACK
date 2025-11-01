@@ -7,28 +7,26 @@
     android:padding="16dp">
 
     <!-- App Title -->
-
     <TextView
         android:id="@+id/appTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:text="FINTRACK"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="FINTRACK"
-        android:textColor="#2E7D32"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#2E7D32"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Date Stamp -->
     <TextView
         android:id="@+id/dateStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="14 October 2025"
+        android:text="31 October 2025"
         android:textSize="14sp"
         android:textColor="#616161"
         android:layout_below="@id/appTitle"
