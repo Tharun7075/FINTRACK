@@ -1,134 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountsActivity"
-    android:padding="16dp">
+    android:background="#F5F5F5"
+    android:padding="16dp"
+    tools:context=".AccountsActivity">
 
     <!-- Header -->
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FINTRACK"
-        android:textSize="24sp"
+        android:text="💼 FINTRACK"
+        android:textSize="26sp"
         android:textStyle="bold"
+        android:textColor="#2E7D32"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Summary Section -->
-    <LinearLayout
-        android:id="@+id/summarySection"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/summaryCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@id/headerTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[All accounts $5000]"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Expenses so far: $4200"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💰 All Accounts: $5000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#424242"
+                android:layout_marginBottom="6dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Income so far: $7000"
-            android:textSize="16sp" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📉 Expenses so far: $4200"
+                android:textSize="14sp"
+                android:textColor="#D32F2F"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📈 Income so far: $7000"
+                android:textSize="14sp"
+                android:textColor="#388E3C" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Accounts Section -->
-    <LinearLayout
-        android:id="@+id/accountsSection"
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/summarySection"
+        app:layout_constraintTop_toBottomOf="@id/summaryCard"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp">
 
-        <!-- Cash -->
         <LinearLayout
+            android:id="@+id/accountsSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
+            android:orientation="vertical">
 
-            <!--           android:src="@drawable/ic_wallet" -->
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Wallet Icon"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Account Card Template -->
+            <!-- Cash -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cash - Balance: $1000"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
 
-        <!-- Debit Card -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-            <!--   android:src="@drawable/ic_card" -->
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Card Icon"
-                android:layout_marginEnd="8dp" />
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_wallet"
+                        android:contentDescription="Wallet Icon"
+                        android:layout_marginEnd="12dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="💵 Cash - Balance: $1000"
+                        android:textSize="16sp"
+                        android:textColor="#424242" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Debit Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Debit Card - Card balance: $1000"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
 
-        <!-- Savings -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
 
-            <!--   android:src="@drawable/ic_piggybank" -->
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Savings Icon"
-                android:layout_marginEnd="8dp" />
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_card"
+                        android:contentDescription="Card Icon"
+                        android:layout_marginEnd="12dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="💳 Debit Card - Balance: $1000"
+                        android:textSize="16sp"
+                        android:textColor="#424242" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Savings -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Savings - Balance: $800"
-                android:textSize="16sp" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_piggybank"
+                        android:contentDescription="Savings Icon"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🐷 Savings - Balance: $800"
+                        android:textSize="16sp"
+                        android:textColor="#424242" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <!-- Bottom Navigation (unchanged) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
