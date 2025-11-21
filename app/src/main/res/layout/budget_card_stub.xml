@@ -3,33 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="6dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="18dp">
 
-        <!-- Stub label: you will set this text from code -->
+        <!-- Category Title -->
         <TextView
             android:id="@+id/categoryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category: 0 / 0"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#424242" />
+            android:text="Category"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333" />
 
+        <!-- Amount Spent Input -->
+        <EditText
+            android:id="@+id/spentInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter amount spent"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text" />
+
+        <!-- Budget Limit Input -->
+        <EditText
+            android:id="@+id/limitInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter budget limit"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text" />
+
+        <!-- ProgressBar -->
         <ProgressBar
             android:id="@+id/categoryProgress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="14dp"
             android:max="100"
-            android:progress="0"
-            android:backgroundTint="#E0E0E0"
-            android:layout_marginTop="8dp" />
+            android:progress="0" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

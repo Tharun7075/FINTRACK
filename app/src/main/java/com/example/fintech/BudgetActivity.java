@@ -2,7 +2,10 @@ package com.example.fintech;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,11 +22,12 @@ import java.util.Map;
 
 public class BudgetActivity extends AppCompatActivity {
 
-    // Simple holder for budget data
+    // Holder for initial dummy budget data
     private static class BudgetData {
-        final String label;   // e.g., "🍔 Food"
-        final int spent;      // e.g., 20
-        final int limit;      // e.g., 500
+        final String label;
+        final int spent;
+        final int limit;
+
         BudgetData(String label, int spent, int limit) {
             this.label = label;
             this.spent = spent;
@@ -43,54 +47,82 @@ public class BudgetActivity extends AppCompatActivity {
             return insets;
         });
 
-        // ---- Bottom Navigation ----
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setSelectedItemId(R.id.nav_budget); // highlight current tab
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                startActivity(new Intent(this, HomeActivity.class));
-                finish(); // avoid stacking
-                return true;
-            } else if (itemId == R.id.nav_analysis) {
-                startActivity(new Intent(this, AnalysisActivity.class));
-                finish();
-                return true;
-            } else if (itemId == R.id.nav_budget) {
-                // Already on Budget; do nothing
-                return true;
-            } else if (itemId == R.id.nav_accounts) {
-                startActivity(new Intent(this, AccountsActivity.class));
-                finish();
-                return true;
-            }
-            return false;
-        });
-
-        // ---- Populate stub cards ----
-        // Map each include's ID to its data
+        // ---------------- Setup Editable Cards ----------------
         Map<Integer, BudgetData> budgets = new HashMap<>();
-        budgets.put(R.id.foodCard,      new BudgetData("🍔 Food",      20,  500));
+        budgets.put(R.id.foodCard,      new BudgetData("🍔 Food", 20, 500));
         budgets.put(R.id.transportCard, new BudgetData("🚗 Transport", 100, 1000));
-        budgets.put(R.id.groceryCard,   new BudgetData("🛒 Groceries", 80,  300));
-        budgets.put(R.id.billsCard,     new BudgetData("📄 Bills",     100, 700));
+        budgets.put(R.id.groceryCard,   new BudgetData("🛒 Groceries", 80, 300));
+        budgets.put(R.id.billsCard,     new BudgetData("📄 Bills", 100, 700));
 
         for (Map.Entry<Integer, BudgetData> entry : budgets.entrySet()) {
             View card = findViewById(entry.getKey());
             if (card == null) continue;
 
             TextView label = card.findViewById(R.id.categoryLabel);
+            EditText spentInput = card.findViewById(R.id.spentInput);
+            EditText limitInput = card.findViewById(R.id.limitInput);
             ProgressBar bar = card.findViewById(R.id.categoryProgress);
 
             BudgetData data = entry.getValue();
-            if (label != null) {
-                label.setText(data.label + ": " + data.spent + " / " + data.limit);
-            }
-            if (bar != null) {
-                bar.setMax(data.limit);
-                bar.setProgress(data.spent);
-            }
+
+            label.setText(data.label);
+            spentInput.setText(String.valueOf(data.spent));
+            limitInput.setText(String.valueOf(data.limit));
+
+            bar.setMax(data.limit);
+            bar.setProgress(data.spent);
+
+            // ---- Update progress bar when limit changes ----
+            limitInput.addTextChangedListener(new SimpleWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    try {
+                        int newLimit = Integer.parseInt(s.toString());
+                        bar.setMax(newLimit);
+                    } catch (Exception ignored) {}
+                }
+            });
+
+            // ---- Update progress bar when spent changes ----
+            spentInput.addTextChangedListener(new SimpleWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    try {
+                        int newSpent = Integer.parseInt(s.toString());
+                        bar.setProgress(newSpent);
+                    } catch (Exception ignored) {}
+                }
+            });
+
+            // ---------------- Bottom Navigation ----------------
+            BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+            bottomNav.setSelectedItemId(R.id.nav_budget);
+
+            bottomNav.setOnItemSelectedListener(item -> {
+                int itemId = item.getItemId();
+                if (itemId == R.id.nav_home) {
+                    startActivity(new Intent(this, HomeActivity.class));
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_analysis) {
+                    startActivity(new Intent(this, AnalysisActivity.class));
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_budget) {
+                    return true;
+                } else if (itemId == R.id.nav_accounts) {
+                    startActivity(new Intent(this, AccountsActivity.class));
+                    finish();
+                    return true;
+                }
+                return false;
+            });
         }
+    }
+
+    // Helper class for simpler TextWatcher
+    abstract static class SimpleWatcher implements TextWatcher {
+        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        @Override public void afterTextChanged(Editable s) {}
     }
 }
