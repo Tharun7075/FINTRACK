@@ -23,10 +23,16 @@
             android:textStyle="bold"
             android:textColor="#333" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
         <!-- Amount Spent Input -->
         <EditText
             android:id="@+id/spentInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter amount spent"
             android:inputType="number"
@@ -34,18 +40,18 @@
             android:layout_marginTop="10dp"
             android:background="@android:drawable/edit_text" />
 
-        <!-- Budget Limit Input -->
         <EditText
             android:id="@+id/limitInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text"
             android:hint="Enter budget limit"
             android:inputType="number"
-            android:padding="12dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/edit_text" />
+            android:padding="12dp" />
+        </LinearLayout>
 
-        <!-- ProgressBar -->
+
         <ProgressBar
             android:id="@+id/categoryProgress"
             style="?android:attr/progressBarStyleHorizontal"
