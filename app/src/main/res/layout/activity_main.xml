@@ -22,7 +22,7 @@
     <!-- Username Field -->
     <EditText
         android:id="@+id/usernameField"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -33,13 +33,23 @@
     <!-- Password Field -->
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="12dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/edit_text" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:padding="14dp" />
 
     <!-- Sign Up Prompt -->
     <TextView
@@ -49,15 +59,5 @@
         android:text="New here? Sign up"
         android:textColor="#1E88E5"
         android:textSize="16sp" />
-
-    <!-- Submit Button -->
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:backgroundTint="#6200EE"
-        android:textColor="#FFFFFF"
-        android:padding="14dp" />
 
 </LinearLayout>
