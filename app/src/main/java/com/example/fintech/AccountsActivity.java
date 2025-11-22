@@ -28,7 +28,7 @@ public class AccountsActivity extends AppCompatActivity {
 
     EditText editCash, editDebit, editSavings, editAllAccounts, editExpenses, editIncome;
     private DatabaseReference mDatabase;
-    private String currentUser = "test1_fintrack_com";
+    private String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,16 @@ public class AccountsActivity extends AppCompatActivity {
 
         // Initialize Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        // Get username from intent
+        currentUser = getIntent().getStringExtra("USERNAME");
+        if (currentUser == null) {
+
+            currentUser = "test1@fintrack.com";
+        }
+
+        // Convert email to Firebase-safe key (replace . with _)
+        currentUser = currentUser.replace(".", "_");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -55,9 +65,6 @@ public class AccountsActivity extends AppCompatActivity {
         // Load saved balances when activity starts
         loadAccountBalances();
 
-        // Save balances when user leaves the activity
-        setupAutoSave();
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_accounts);
 
@@ -66,29 +73,33 @@ public class AccountsActivity extends AppCompatActivity {
             saveAccountBalances();
 
             int itemId = item.getItemId();
+            Intent intent = null;
+
             if (itemId == R.id.nav_home) {
-                startActivity(new Intent(this, HomeActivity.class));
-                return true;
+                intent = new Intent(this, HomeActivity.class);
             } else if (itemId == R.id.nav_analysis) {
-                startActivity(new Intent(this, AnalysisActivity.class));
-                return true;
+                intent = new Intent(this, AnalysisActivity.class);
             } else if (itemId == R.id.nav_budget) {
-                startActivity(new Intent(this, BudgetActivity.class));
-                return true;
+                intent = new Intent(this, BudgetActivity.class);
             } else if (itemId == R.id.nav_accounts) {
-                startActivity(new Intent(this, AccountsActivity.class));
+                intent = new Intent(this, AccountsActivity.class);
+            }
+
+            if (intent != null) {
+                intent.putExtra("USERNAME", currentUser.replace("_", ".")); // Convert back for passing
+                startActivity(intent);
                 return true;
             }
             return false;
         });
     }
 
+
     private void loadAccountBalances() {
         mDatabase.child("user_accounts").child(currentUser).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    // Load saved values from database
                     Double cash = snapshot.child("cash").getValue(Double.class);
                     Double debit = snapshot.child("debit").getValue(Double.class);
                     Double savings = snapshot.child("savings").getValue(Double.class);
