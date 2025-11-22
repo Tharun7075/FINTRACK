@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,12 +124,11 @@ public class AccountsActivity extends AppCompatActivity {
         editDebit.setOnFocusChangeListener((v, hasFocus) -> { if (!hasFocus) saveAccountBalances(); });
         editSavings.setOnFocusChangeListener((v, hasFocus) -> { if (!hasFocus) saveAccountBalances(); });
     }
-
     private void saveAccountBalances() {
         try {
-            double cash = Double.parseDouble(editCash.getText().toString());
-            double debit = Double.parseDouble(editDebit.getText().toString());
-            double savings = Double.parseDouble(editSavings.getText().toString());
+            double cash = editCash.getText().toString().isEmpty() ? 0 : Double.parseDouble(editCash.getText().toString());
+            double debit = editDebit.getText().toString().isEmpty() ? 0 : Double.parseDouble(editDebit.getText().toString());
+            double savings = editSavings.getText().toString().isEmpty() ? 0 : Double.parseDouble(editSavings.getText().toString());
 
             Map<String, Object> accountData = new HashMap<>();
             accountData.put("cash", cash);
@@ -137,7 +137,7 @@ public class AccountsActivity extends AppCompatActivity {
             accountData.put("lastUpdated", System.currentTimeMillis());
 
             mDatabase.child("user_accounts").child(currentUser).setValue(accountData)
-                    .addOnSuccessListener(aVoid -> Log.d("AccountsActivity", "Balances saved!"))
+                    .addOnSuccessListener(aVoid -> Log.d("AccountsActivity", "Balances saved for: " + currentUser))
                     .addOnFailureListener(e -> Log.e("AccountsActivity", "Save failed", e));
 
         } catch (NumberFormatException e) {
@@ -148,7 +148,6 @@ public class AccountsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Save when activity goes to background
         saveAccountBalances();
     }
 }
