@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.fintech.db.CategoryTotal;
 import com.example.fintech.db.FintechDatabase;
-import com.example.fintech.db.TransactionDao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
