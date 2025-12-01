@@ -37,52 +37,106 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <EditText
-                android:id="@+id/editAllAccounts"
-                android:layout_width="wrap_content"
+            <!-- All Accounts -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="💰 All Accounts:                    5000"
-                android:textColor="#424242"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <EditText
-                android:id="@+id/editExpenses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="📉 Expenses so far:              4200"
-                android:textColor="#D32F2F"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💰 All Accounts:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#424242" />
 
-            <EditText
-                android:id="@+id/editIncome"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtAllAccountsValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#424242" />
+            </LinearLayout>
+
+            <!-- Expenses -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="📈 Income so far:                  7000"
-                android:textColor="#388E3C"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📉 Expenses so far:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#D32F2F" />
+
+                <TextView
+                    android:id="@+id/txtExpensesValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#D32F2F" />
+            </LinearLayout>
+
+            <!-- Income -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📈 Income so far:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#388E3C" />
+
+                <TextView
+                    android:id="@+id/txtIncomeValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#388E3C" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <!-- Accounts Section -->
     <ScrollView
+        android:id="@+id/accountsScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintTop_toBottomOf="@id/summaryCard"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp">
+        app:layout_constraintBottom_toTopOf="@id/btnSaveAccounts">
 
         <LinearLayout
             android:id="@+id/accountsSection"
@@ -112,11 +166,22 @@
                         android:contentDescription="Wallet Icon"
                         android:layout_marginEnd="12dp" />
 
-                    <EditText
-                        android:id="@+id/editCash"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💵 Cash - Balance:             1000"
+                        android:text="💵 Cash - Balance:"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/editCash"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="0"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#424242"
@@ -146,11 +211,22 @@
                         android:contentDescription="Card Icon"
                         android:layout_marginEnd="12dp" />
 
-                    <EditText
-                        android:id="@+id/editDebit"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💳 Debit Card - Balance:   1000"
+                        android:text="💳 Debit Card - Balance:"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/editDebit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="0"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#424242"
@@ -180,11 +256,22 @@
                         android:contentDescription="Savings Icon"
                         android:layout_marginEnd="12dp" />
 
-                    <EditText
-                        android:id="@+id/editSavings"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🐷 Savings - Balance:          800"
+                        android:text="🐷 Savings - Balance:"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/editSavings"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="0"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#424242"
@@ -195,6 +282,19 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSaveAccounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:backgroundTint="#5E35B1"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -202,4 +302,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
