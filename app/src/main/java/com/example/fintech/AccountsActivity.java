@@ -3,10 +3,7 @@ package com.example.fintech;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-<<<<<<< HEAD
 import android.widget.Button;
-=======
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,20 +28,8 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class AccountsActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
     EditText editCash, editDebit, editSavings;
     TextView txtAllAccounts, txtExpenses, txtIncome;
 
@@ -53,11 +38,6 @@ public class AccountsActivity extends AppCompatActivity {
 
     private ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
     private TransactionDao txDao;
-=======
-    EditText editCash, editDebit, editSavings, editAllAccounts, editExpenses, editIncome;
-    private DatabaseReference mDatabase;
-    private String currentUser;
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +45,6 @@ public class AccountsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_accounts);
 
-<<<<<<< HEAD
         // Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -78,19 +57,6 @@ public class AccountsActivity extends AppCompatActivity {
         if (currentUser == null) {
             currentUser = "test1@fintrack.com";
         }
-=======
-        // Initialize Firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        // Get username from intent
-        currentUser = getIntent().getStringExtra("USERNAME");
-        if (currentUser == null) {
-
-            currentUser = "test1@fintrack.com";
-        }
-
-        // Convert email to Firebase-safe key (replace . with _)
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
         currentUser = currentUser.replace(".", "_");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -104,7 +70,6 @@ public class AccountsActivity extends AppCompatActivity {
         editDebit = findViewById(R.id.editDebit);
         editSavings = findViewById(R.id.editSavings);
 
-<<<<<<< HEAD
         txtAllAccounts = findViewById(R.id.txtAllAccountsValue);
         txtExpenses = findViewById(R.id.txtExpensesValue);
         txtIncome = findViewById(R.id.txtIncomeValue);
@@ -125,22 +90,12 @@ public class AccountsActivity extends AppCompatActivity {
         });
 
         // Bottom navigation
-=======
-        // Load saved balances when activity starts
-        loadAccountBalances();
-
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_accounts);
 
         bottomNav.setOnItemSelectedListener(item -> {
-<<<<<<< HEAD
             saveAccountBalances();
             refreshSummary();
-=======
-            // Save before navigating away
-            saveAccountBalances();
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
 
             int itemId = item.getItemId();
             Intent intent = null;
@@ -156,11 +111,7 @@ public class AccountsActivity extends AppCompatActivity {
             }
 
             if (intent != null) {
-<<<<<<< HEAD
                 intent.putExtra("USERNAME", currentUser.replace("_", "."));
-=======
-                intent.putExtra("USERNAME", currentUser.replace("_", ".")); // Convert back for passing
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
                 startActivity(intent);
                 return true;
             }
@@ -168,7 +119,6 @@ public class AccountsActivity extends AppCompatActivity {
         });
     }
 
-<<<<<<< HEAD
     private double parseOrZero(EditText edt) {
         String s = edt.getText().toString().trim();
         if (s.isEmpty()) return 0;
@@ -214,42 +164,6 @@ public class AccountsActivity extends AppCompatActivity {
             double cash = parseOrZero(editCash);
             double debit = parseOrZero(editDebit);
             double savings = parseOrZero(editSavings);
-=======
-
-    private void loadAccountBalances() {
-        mDatabase.child("user_accounts").child(currentUser).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Double cash = snapshot.child("cash").getValue(Double.class);
-                    Double debit = snapshot.child("debit").getValue(Double.class);
-                    Double savings = snapshot.child("savings").getValue(Double.class);
-
-                    if (cash != null) editCash.setText(String.valueOf(cash));
-                    if (debit != null) editDebit.setText(String.valueOf(debit));
-                    if (savings != null) editSavings.setText(String.valueOf(savings));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("AccountsActivity", "Failed to load account balances", error.toException());
-            }
-        });
-    }
-
-    private void setupAutoSave() {
-        // Save when user stops typing (optional)
-        editCash.setOnFocusChangeListener((v, hasFocus) -> { if (!hasFocus) saveAccountBalances(); });
-        editDebit.setOnFocusChangeListener((v, hasFocus) -> { if (!hasFocus) saveAccountBalances(); });
-        editSavings.setOnFocusChangeListener((v, hasFocus) -> { if (!hasFocus) saveAccountBalances(); });
-    }
-    private void saveAccountBalances() {
-        try {
-            double cash = editCash.getText().toString().isEmpty() ? 0 : Double.parseDouble(editCash.getText().toString());
-            double debit = editDebit.getText().toString().isEmpty() ? 0 : Double.parseDouble(editDebit.getText().toString());
-            double savings = editSavings.getText().toString().isEmpty() ? 0 : Double.parseDouble(editSavings.getText().toString());
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
 
             Map<String, Object> accountData = new HashMap<>();
             accountData.put("cash", cash);
@@ -261,7 +175,6 @@ public class AccountsActivity extends AppCompatActivity {
                     .addOnSuccessListener(aVoid -> Log.d("AccountsActivity", "Balances saved for: " + currentUser))
                     .addOnFailureListener(e -> Log.e("AccountsActivity", "Save failed", e));
 
-<<<<<<< HEAD
         } catch (Exception e) {
             Log.e("AccountsActivity", "Invalid number format", e);
         }
@@ -290,22 +203,10 @@ public class AccountsActivity extends AppCompatActivity {
         });
     }
 
-=======
-        } catch (NumberFormatException e) {
-            Log.e("AccountsActivity", "Invalid number format");
-        }
-    }
-
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
     @Override
     protected void onPause() {
         super.onPause();
         saveAccountBalances();
-<<<<<<< HEAD
         refreshSummary();
     }
 }
-=======
-    }
-}
->>>>>>> 44fd03d43475b7f75c92e15e9b47d6600ad12d5e
