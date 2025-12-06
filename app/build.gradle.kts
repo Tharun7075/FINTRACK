@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    //id("com.android.application")
+    // your app already works with Java only
     id("com.google.gms.google-services")
 }
 
@@ -27,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -40,14 +41,19 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.database)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Import the BoM for the Firebase platform
+    // Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-
-    // Add the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
+
+    // ============= ROOM (JAVA, Kotlin DSL) =============
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
