@@ -7,6 +7,60 @@ The app provides clear insights into spending habits and supports smart financia
 
 [GitHub Repository: ](https://github.com/Tharun7075/FINTRACK) https://github.com/Tharun7075/FINTRACK
 
+## Build & Run Instructions
+Prerequisites -
+
+Node.js installed
+
+MySQL database configured
+
+Browser (Chrome recommended)
+
+## Running the Application
+1. Launch the App
+
+After starting the project (frontend + backend), open the application in your browser:
+
+### How to Use the Application
+- Login
+
+On the Login Page, enter the provided credentials.
+Click the Save button to authenticate and access your dashboard.
+
+- Home Page - Add Daily Expenses
+
+Users can enter their daily expenditure amount along with category details.
+
+Click Save to record the entry.
+
+This automatically updates the Budget and Analysis pages.
+
+- Budget Page - Set Monthly Limits
+
+Users can predefine their monthly spending limit for better financial planning.
+
+The system uses this value to show alerts and track progress throughout the month.
+
+📊 Analysis Page – Visual Spending Breakdown
+
+Users can view a visual summary of their expenses.
+
+A donut chart provides a clear breakdown of spending across different categories.
+
+Helps users understand where most of their money is going.
+
+🏦 Accounts Page – Financial Overview
+
+Users can view the balance of all their accounts, including:
+
+Cash
+
+Debit
+
+Credit
+
+The page consolidates balances from all linked accounts for a complete financial overview.
+
 ## Identification of Risky Components
 The following features, while beneficial for enhancing the application's functionality, may introduce additional complexity or require careful planning. Each component is described below along with its associated risks and suggested mitigation strategies:
 
