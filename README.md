@@ -41,7 +41,7 @@ Users can predefine their monthly spending limit for better financial planning.
 
 The system uses this value to show alerts and track progress throughout the month.
 
-📊 Analysis Page – Visual Spending Breakdown
+- Analysis Page – Visual Spending Breakdown
 
 Users can view a visual summary of their expenses.
 
@@ -49,16 +49,9 @@ A donut chart provides a clear breakdown of spending across different categories
 
 Helps users understand where most of their money is going.
 
-🏦 Accounts Page – Financial Overview
+- Accounts Page – Financial Overview
 
-Users can view the balance of all their accounts, including:
-
-Cash
-
-Debit
-
-Credit
-
+Users can view the balance of all their accounts, including: Cash, Debit, Credit
 The page consolidates balances from all linked accounts for a complete financial overview.
 
 ## Identification of Risky Components
